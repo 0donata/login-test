@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "./store";
 import AuthService from "../services/AuthService";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 
 interface LoginPayload {
   email: string;
@@ -109,11 +109,13 @@ export const setNewPassword = createAsyncThunk(
         passwordConfirm
       );
       return response.data;
-    } catch (error: any) {
-      if (!error.response) {
-        throw error;
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        if (!error.response) {
+          throw error;
+        }
+        return rejectWithValue(error.response.data);
       }
-      return rejectWithValue(error.response.data);
     }
   }
 );
@@ -146,20 +148,23 @@ const authSlice = createSlice({
     });
     builder.addCase(loginUser.rejected, (state, action) => {
       state.isLoading = false;
-      state.loginError = action.payload?.detail || "Login failed";
+      const payload = action.payload as { detail?: string };
+      state.loginError = payload.detail || "Login failed";
     });
     builder
       .addCase(resetPasswordRequest.fulfilled, (state) => {
         state.isResetEmail = true;
       })
       .addCase(resetPasswordRequest.rejected, (state, action) => {
-        state.resetError = action.payload.detail || "An error occurred";
+        const payload = action.payload as { detail?: string };
+        state.resetError = payload.detail || "An error occurred";
       });
     builder.addCase(setNewPassword.fulfilled, (state) => {
       state.isNewPasswordSet = true;
     });
     builder.addCase(setNewPassword.rejected, (state, action) => {
-      state.newPasswordError = action.payload.detail || "An error occurred";
+      const payload = action.payload as { detail?: string };
+      state.newPasswordError = payload.detail || "An error occurred";
     });
   },
 });
