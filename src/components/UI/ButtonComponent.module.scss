@@ -1,0 +1,31 @@
+@import "../../styles/colors";
+
+.btn {
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s, color 0.3s, opacity 0.3s;
+  width: 100%;
+  padding: 15px 0;
+}
+
+.btnPrimary {
+  background-color: $blue100;
+  color: white;
+}
+
+.btnPrimary:hover {
+  opacity: 0.9;
+}
+
+.btnSecondary {
+  background-color: transparent;
+  color: $gray900;
+  border: 1px solid $gray300;
+}
+
+.btnSecondary:hover {
+  background-color: #f8f9fa;
+}

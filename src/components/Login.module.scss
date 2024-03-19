@@ -1,0 +1,72 @@
+@import "../styles/colors";
+
+.socialLogin {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: #fff;
+    width: 100%;
+    padding: 0px, 20px;
+    height: 48px;
+    font-size: 14px;
+    font-weight: 500;
+    border: 1.2px solid $gray300;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: border-color 0.3s;
+    img {
+      height: 18px;
+      width: auto;
+    }
+    &:hover {
+      border-color: $blue100;
+    }
+  }
+}
+
+.orSeparator {
+  text-align: center;
+  border-bottom: 1px solid $gray100;
+  line-height: 0.01em;
+  margin: 35px 0;
+  span {
+    color: $gray500;
+    background: #fff;
+    font-size: 12px;
+    padding: 0 5px;
+  }
+}
+
+.loginForm {
+  .loginButton {
+    margin: 30px 0 15px 0;
+  }
+}
+
+.forgotPassword {
+  margin-top: 12px;
+  width: 100%;
+  text-align: right;
+}
+
+.loginSuccess {
+  margin-top: 3px;
+  width: 100%;
+  background-color: rgb(222, 246, 222);
+  color: green;
+  padding: 5px 0;
+  border-radius: 6px;
+}
+
+.signUpLink {
+  font-weight: 400;
+  font-size: 14px;
+  a {
+    margin-left: 3px;
+  }
+}
